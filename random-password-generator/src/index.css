@@ -1,1 +1,12 @@
 @import "tailwindcss";
+
+
+.generator-box{
+    border-radius: 1rem;
+    box-shadow: 0 0 10px #0000005e;
+}
+
+label{
+    margin: 5px;
+    margin-right: 20px;
+}
