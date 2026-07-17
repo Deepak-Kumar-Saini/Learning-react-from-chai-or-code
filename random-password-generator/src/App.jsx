@@ -4,6 +4,7 @@ import React, { useState,useEffect } from 'react'
 function App() {
 
   const [len,setLen] = useState(8)
+  const [refresh,setRefresh] = useState(false)
   const [numAllowed,setNumAllowed] = useState(false)
   const [charAllowed,setCharAllowed] = useState(false)
 
@@ -24,9 +25,9 @@ function App() {
     return password;
   }
 
-  // useEffect(()=>{
-  //   generatPassword()
-  // },[len,charAllowed,numAllowed,generatPassword])
+  useEffect(()=>{
+    generatPassword()
+  },[len,charAllowed,numAllowed,generatPassword])
 
   return (
     <>
@@ -45,6 +46,8 @@ function App() {
 
             <input type="checkbox" id='char' onChange={()=>{setCharAllowed((prev)=>!prev)}} className='cursor-pointer' />
             <label className='cursor-pointer select-none' htmlFor="char">Cheracter</label>
+
+            <button onClick={()=>{setRefresh((p)=>!p)}} className='text-white bg-blue-600 font-semibold h-6 w-6 rounded cursor-pointer active:bg-blue-400 self-center'>&#x21BB;</button>
           </div>
         </div>
       </div>
@@ -52,4 +55,4 @@ function App() {
   )
 }
 
-export default App
+export default App;
