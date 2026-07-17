@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState,useEffect, useRef } from 'react'
 
 
 function App() {
@@ -7,6 +7,8 @@ function App() {
   const [refresh,setRefresh] = useState(false)
   const [numAllowed,setNumAllowed] = useState(false)
   const [charAllowed,setCharAllowed] = useState(false)
+
+  const copyBtn = useRef(null)
 
   function generatPassword(){
     let passwordStr="QWERTYUIOPLKJHGFDSAZXCVBNMqwertyuioplkjhgfdsazxcvbnm"
@@ -25,6 +27,12 @@ function App() {
     return password;
   }
 
+  
+
+  function copyPassword(){
+    window.navigator.clipboard.writeText("hello")
+  }
+
   useEffect(()=>{
     generatPassword()
   },[len,charAllowed,numAllowed,generatPassword])
@@ -34,8 +42,11 @@ function App() {
       <div className='flex justify-center items-center h-screen'>
         <div className="generator-box p-7">
           <div className='overflow-hidden border-2 border-blue-500 rounded-xl mb-5 flex bg-blue-500'>
-            <input type="text" readOnly value={generatPassword()} className='bg-gray-100 flex-1 p-3 outline-none' />
-            <button type='button' className='m-2 text-white hover:text-[#bbb] cursor-pointer font-semibold'>COPY</button>
+            <input type="text" readOnly value={generatPassword()} className='bg-gray-100 flex-1 p-3 outline-none' ref={copyBtn} />
+            
+            {/* coppy button */}
+            <button type='button' onClick={copyPassword()} className='m-2 text-white hover:text-[#bbb] cursor-pointer font-semibold'>COPY</button>
+
           </div>
           <div className='flex justify-center items-center'>
             <input type="range" onChange={(e)=>{setLen(e.target.value)}} min={4} max={20} id='length' className='cursor-pointer' />
