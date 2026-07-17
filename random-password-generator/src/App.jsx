@@ -27,10 +27,11 @@ function App() {
     return password;
   }
 
-  
 
   function copyPassword(){
-    window.navigator.clipboard.writeText("hello")
+    window.navigator.clipboard.writeText(copyBtn.current.value)
+    copyBtn.current?.select()
+    
   }
 
   useEffect(()=>{
@@ -45,7 +46,7 @@ function App() {
             <input type="text" readOnly value={generatPassword()} className='bg-gray-100 flex-1 p-3 outline-none' ref={copyBtn} />
             
             {/* coppy button */}
-            <button type='button' onClick={copyPassword()} className='m-2 text-white hover:text-[#bbb] cursor-pointer font-semibold'>COPY</button>
+            <button type='button' onClick={()=>{copyPassword()}} className='m-2 text-white hover:text-[#bbb] cursor-pointer font-semibold'>COPY</button>
 
           </div>
           <div className='flex justify-center items-center'>
